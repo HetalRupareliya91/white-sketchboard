@@ -1,77 +1,105 @@
-# react-whiteboard-pdf
+# React Whiteboard PDF
 
-<div>
-  <h2>
-    React virtual whiteboard with PDF and Images upload functionality
-    <br />
-  </h2>
-</div>
+A powerful **React virtual whiteboard** built with **Fabric.js** that supports drawing, annotations, PDF import, image upload, zooming, and canvas state management.
 
-<br />
+It is designed for educational platforms, collaborative applications, digital classrooms, document annotation, and interactive whiteboard solutions.
 
-![Example](./app-example.png)
+![React Whiteboard PDF](./app-example.png)
 
-Check App demo here:
+---
 
-# App [DEMO](https://statuesque-muffin-fb224e.netlify.app/)
+## 🚀 Live Demo
 
-<br/>
+**Demo:** https://statuesque-muffin-fb224e.netlify.app/
 
-## If you like this project you can help us with $1,000,000 donation or any other amount
+---
 
-github: [github.com/sponsors/spiridonov-oa](https://github.com/sponsors/spiridonov-oa)
-patreon: [patreon.com/OlegSpiridonov](https://patreon.com/OlegSpiridonov)
+# Features
 
-## Compatibility
+- ✏️ Freehand drawing
+- 📄 Import PDF documents
+- 🖼️ Upload images
+- 🔲 Draw shapes (Rectangle, Triangle, Ellipse, Line)
+- 📝 Add text annotations
+- 🎨 Color picker
+- 🖌️ Adjustable brush size
+- 🩹 Eraser tool
+- 🔍 Zoom in/out
+- 💾 Export canvas as image
+- 📂 Save & restore canvas using JSON
+- 📑 Multi-page PDF support
+- ⚡ Built with Fabric.js for high-performance canvas rendering
 
-React 17
+---
 
-<br/>
+# Technologies Used
 
-## Installation
+- React 17+
+- Fabric.js
+- React PDF
+- Styled Components
+- Sass
+- File Saver
+- Babel
 
-```shell
+---
+
+# Compatibility
+
+- React 17 or later
+
+---
+
+# Installation
+
+Using npm:
+
+```bash
 npm install react-whiteboard-pdf
 ```
 
-or
+Using Yarn:
 
-```shell
+```bash
 yarn add react-whiteboard-pdf
 ```
 
-<br/>
+---
 
-## Usage
+# Basic Usage
 
-```javascript
-const App = () => {
+```jsx
+import { Whiteboard } from "react-whiteboard-pdf";
+
+function App() {
   return (
     <div>
       <Whiteboard />
     </div>
   );
-};
+}
+
+export default App;
 ```
 
-You can change default props
+---
 
-```javascript
-import { Whiteboard } from 'react-whiteboard-pdf';
+# Advanced Usage
 
-const App = () => {
+The component supports customization through several configuration objects.
+
+```jsx
+import { Whiteboard } from "react-whiteboard-pdf";
+
+function App() {
   return (
     <Whiteboard
-      // default parameters
       drawingSettings={{
-        brushWidth: 5, // :number (optional) (default: 5) - brush size for drawing
-        background: false, // :boolean (optional) (default: false) - polkadot as background picture
-        currentMode: modes.PENCIL, //
-        currentColor: '#000000',
         brushWidth: 5,
-        fill: false, // if true, square, rectangle, and triangle will be filled with current color
+        background: false,
+        currentColor: "#000000",
+        fill: false
       }}
-      // default controls
       controls={{
         PENCIL: true,
         LINE: true,
@@ -88,22 +116,20 @@ const App = () => {
         DEFAULT_COLORS: true,
         FILES: true,
         SAVE_AS_IMAGE: true,
-        ZOOM: true,
+        ZOOM: true
       }}
       settings={{
         zoom: 1,
         minZoom: 0.05,
         maxZoom: 9.99,
-        contentJSON: null, // JSON to render in canvas
+        contentJSON: null
       }}
       fileInfo={{
-        file: { name: 'Desk 1' },
+        file: { name: "Document" },
         totalPages: 1,
         currentPageNumber: 0,
-        currentPage: '',
+        currentPage: ""
       }}
-      onObjectAdded={(addedObject) => {}}
-      onObjectRemoved={(removedObject) => {}}
       onObjectAdded={(data, event, canvas) => {}}
       onObjectRemoved={(data, event, canvas) => {}}
       onZoom={(data, event, canvas) => {}}
@@ -114,24 +140,173 @@ const App = () => {
       onOptionsChange={(data, event, canvas) => {}}
       onSaveCanvasAsImage={(data, event, canvas) => {}}
       onConfigChange={(data, event, canvas) => {}}
-      onSaveCanvasState={(data, event, canvas) => {}}
+      onSaveCanvasState={(data, event,canvas) => {}}
     />
   );
-};
+}
+
+export default App;
 ```
 
-## Development:
+---
 
-```shell
-npm i
+# Configuration
+
+## Drawing Settings
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| brushWidth | Number | 5 | Brush size |
+| background | Boolean | false | Display dotted background |
+| currentColor | String | #000000 | Active drawing color |
+| fill | Boolean | false | Fill shapes with current color |
+
+---
+
+## Controls
+
+Enable or disable individual toolbar buttons.
+
+Available controls include:
+
+- PENCIL
+- LINE
+- RECTANGLE
+- ELLIPSE
+- TRIANGLE
+- TEXT
+- SELECT
+- ERASER
+- CLEAR
+- FILL
+- BRUSH
+- COLOR_PICKER
+- DEFAULT_COLORS
+- FILES
+- SAVE_AS_IMAGE
+- ZOOM
+
+---
+
+## Settings
+
+| Property | Description |
+|-----------|-------------|
+| zoom | Initial zoom level |
+| minZoom | Minimum zoom |
+| maxZoom | Maximum zoom |
+| contentJSON | Restore saved canvas state |
+
+---
+
+## Event Callbacks
+
+The Whiteboard component provides several callback functions:
+
+```jsx
+onObjectAdded()
+onObjectRemoved()
+onZoom()
+onImageUploaded()
+onPDFUploaded()
+onPDFUpdated()
+onPageChange()
+onOptionsChange()
+onSaveCanvasAsImage()
+onConfigChange()
+onSaveCanvasState()
+```
+
+Each callback receives:
+
+```jsx
+(data, event, canvas)
+```
+
+allowing complete access to the Fabric.js canvas instance.
+
+---
+
+# Development
+
+Clone the repository:
+
+```bash
+git clone https://github.com/HetalRupareliya91/white-sketchboard.git
+```
+
+Navigate to the project:
+
+```bash
+cd white-sketchboard
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
 npm start
 ```
 
-## Author:
+Build the application:
 
-[spiridonov-oa](https://github.com/spiridonov-oa)
+```bash
+npm run build
+```
 
-## Contributors:
+Build the distributable npm package:
 
-Thanks for your help in building this project
-[rodionspi](https://github.com/rodionspi)
+```bash
+npm run build-npm
+```
+
+Run tests:
+
+```bash
+npm test
+```
+
+---
+
+# Project Structure
+
+```
+src/
+│
+├── lib/
+├── components/
+├── styles/
+└── index.js
+
+dist/
+
+README.md
+package.json
+```
+
+---
+
+# License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# Author
+
+**Oleg Spiridonov**
+
+https://github.com/spiridonov-oa
+
+---
+
+# Contributors
+
+Thanks to everyone who has contributed to this project.
+
+- rodionspi
